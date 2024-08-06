@@ -1,4 +1,4 @@
-
+import Link from "next/link"
 
 async function loadProduct(){
     const res = await fetch('https://fakestoreapi.com/products')
@@ -12,10 +12,16 @@ async function Producto(){
     return(
         <div>
             <h1>Producto</h1>
-
             <table>
-                <thead>
-
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Titulo</th>
+                    <th>Precio</th>
+                    <th>Ctegoria</th>
+                    <th>Stock</th>
+                    <th>Opciones</th>
+                </tr>                
                 </thead>
                 <tbody>
                 {pro.map((product)=>(
@@ -26,8 +32,9 @@ async function Producto(){
                     <td>{product.category}</td>
                     <td>{product.rating.count}</td>
                     <td>
-                        <a className="btn btn-info">Edit</a>
-                        <a className="btn btn-danger">Eliminar</a>
+                        <Link href={`/producto/${product.id}`}>Ver</Link>
+                        <Link href="/" className="btn btn-info">Edit</Link>
+                        <Link href="/" className="btn btn-danger">Eliminar</Link>
                     </td>
                 </tr>
             ))

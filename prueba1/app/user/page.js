@@ -11,7 +11,7 @@ async function loadUser(){
 
 async function eliminar(id){
     await fetch(`https://fakestoreapi.com/users/${id}`,{
-        method:'DELETE'
+        method:'DELETE',
     })
 }
 
@@ -48,9 +48,9 @@ function User(){
                             <td>{users.name.lastname}</td>
                             <td>{users.email}</td>
                             <td>
-                                <Link href="">View</Link>
+                                <Link href={`/user/${users.id}`}>View</Link>
                                 <Link href="">Editar</Link>
-                                <button onClick={eliminar(users.id)}>Eliminar</button>                                
+                                <button onClick={()=>eliminar(users.id)}>Eliminar</button>                                
                             </td>
                         </tr>
                     ))}

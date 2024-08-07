@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 async function loadProduct(id){
     const res = await fetch(`https://fakestoreapi.com/products/${id}`)
-    const data = await res.json()
+    const data = await res.json();
     return data; 
 }
  
@@ -16,7 +16,7 @@ export default function PostId(){
         async function post(){
             if(params.id){
                 const post = await loadProduct(params.id); 
-            setProduct(post);
+                setProduct(post);
             }            
         }
         post();

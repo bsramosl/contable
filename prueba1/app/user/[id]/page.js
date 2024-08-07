@@ -30,7 +30,20 @@ function userPost(){
 
     return(
         <form>
+            <div>
+                <label>Email: </label>
+                <input type="text" name="email" value={user.email} onChange={handleChange} placeholder="Email" />
+            </div>
+            <div>
+                <label>Username: </label>
+                <input type="text" name="username" value={user.username} onChange={handleChange} placeholder="Username" />
+            </div>
+            <div>
+                <label>Password: </label>
+                <input type="text" name="password" value={user.password} onChange={handleChange} placeholder="Contraseña" />
+            </div>
 
+            <button type="submit" className="">Guardar</button>
         </form>
     )
 }

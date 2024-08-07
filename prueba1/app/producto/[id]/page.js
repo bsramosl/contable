@@ -21,15 +21,37 @@ export default function PostId(){
         }
         post();
     },[params.id])
+
+    const handleChange = (e)=>{
+        setProduct({...product,[e.target.name]:e.target.value});
+    };
+
+    
     return ( 
        <div className="card"> 
         <h1>Prueba de paramas{product.id}</h1>
-           <div className="card-header">
-           <h2>{product.title}</h2>
-           </div>
-           <div className="card-body">
-            <p>{product.description}</p>               
-           </div> 
+          <form>
+            <div>
+                <label className="label">Titulo:  </label>
+                <input className="block w-full roundend border-2 border-black" type="text" name="title" value={product.title} onChange={handleChange} placeholder="Titulo"  />
+            </div>
+            <div>
+                <label>Precio: </label>
+                <input className="block w-full rounded border-2 border-black" type="text" name="price" value={product.price} onChange={handleChange} placeholder="Pecio" />
+            </div>
+            <div>
+                <label>Categoria: </label>
+                <input className="block w-full rounded border-2 border-black" type="taext" name="category" value={product.category} onChange={handleChange} placeholder="Categoria" />
+            </div>
+            <div>
+                <label>Descripcion: </label>
+                <input className="block w-full rounded border-2 border-black" type="text" name="description" value={product.description} onChange={handleChange} placeholder="Descripcion" />
+            </div>
+            <div>
+                <label>Imagen: </label>
+                <input className="block w-full rounded border-2 border-black" type="text" name="image" value={product.image} onChange={handleChange} placeholder="Imagen"  />
+            </div>
+          </form>
        </div> 
     );
 }

@@ -9,6 +9,12 @@ async function loadProduct(){
     return data;
 }
 
+async function eliminar(id) {
+    await fetch(`https://fakestoreapi.com/products/${id}`,{
+        method:'DELETE',
+    });
+}
+
 
 function Producto(){
     const[product,setProduct]= useState([]);
@@ -44,7 +50,7 @@ function Producto(){
                     <td>
                         <Link href={`/producto/${product.id}`}>Ver</Link>
                         <Link href="/" className="btn btn-info">Edit</Link>
-                        <Link href="/" className="btn btn-danger">Eliminar</Link>
+                        <button onClick={()=>eliminar(product.id)} className="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
             ))

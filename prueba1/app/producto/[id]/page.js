@@ -26,11 +26,22 @@ export default function PostId(){
         setProduct({...product,[e.target.name]:e.target.value});
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await fetch(`https://fakestoreapi.com/products/${params.id}`,{
+            method:'PUT',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(product),
+        });
+        router.push('/producto')
+    }
     
     return ( 
        <div className="card"> 
         <h1>Prueba de paramas{product.id}</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
                 <label className="label">Titulo:  </label>
                 <input className="block w-full roundend border-2 border-black" type="text" name="title" value={product.title} onChange={handleChange} placeholder="Titulo"  />

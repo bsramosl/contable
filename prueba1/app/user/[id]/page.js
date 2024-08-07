@@ -12,7 +12,7 @@ async function loadUser(id){
 
 
 function userPost(){
-    const [user,setUser]= useState([]);
+    const [user,setUser]= useState([{email:'',password:'',username:''}]);
     const params = useParams();
     const router = useRouter();
 

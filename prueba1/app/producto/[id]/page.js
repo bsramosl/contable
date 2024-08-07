@@ -1,16 +1,17 @@
-
-
+"use client"
+import {useParams} from "next/navigation"
 
 async function loadProduct(id){
     const res = await fetch(`https://fakestoreapi.com/products/${id}`)
     const data = await res.json()
-    return data;
-
+    return data; 
 }
 
 
-export default async function PostId({params}){
-    const pro = await loadProduct(params.id);
+
+export default async function PostId(){
+    const rout = useParams()
+    const pro = await loadProduct(rout.id); 
     return ( 
        <div className="card"> 
         <h1>Prueba de paramas{pro.id}</h1>

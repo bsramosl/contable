@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { useEffect, useState } from "react";
+
 
 async function loadProduct(){
     const res = await fetch('https://fakestoreapi.com/products')
@@ -7,8 +9,17 @@ async function loadProduct(){
 }
 
 
-async function Producto(){
-    const pro = await loadProduct();
+function Producto(){
+    const[product,setProduct]= useState([]);
+
+    useEffect(()=>{
+        async function fetchProducts(){
+            const pro = await loadProduct()
+            setProduct(pro);
+        }
+        fetchProducts();
+    },[]);
+   
     return(
         <div>
             <h1>Producto</h1>
@@ -24,7 +35,7 @@ async function Producto(){
                 </tr>                
                 </thead>
                 <tbody>
-                {pro.map((product)=>(
+                {product.map((product)=>(
                 <tr key={product.id}>
                     <td>{product.id}</td>
                     <td>{product.title}</td>

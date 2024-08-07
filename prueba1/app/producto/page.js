@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link"
 import { useEffect, useState } from "react";
 
@@ -11,15 +12,13 @@ async function loadProduct(){
 
 function Producto(){
     const[product,setProduct]= useState([]);
-
     useEffect(()=>{
         async function fetchProducts(){
             const pro = await loadProduct()
             setProduct(pro);
         }
         fetchProducts();
-    },[]);
-   
+    },[]);   
     return(
         <div>
             <h1>Producto</h1>

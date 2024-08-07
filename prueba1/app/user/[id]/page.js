@@ -1,6 +1,7 @@
 "use client"
 import {useParams} from "next/navigation"
 import {useState,useEffect} from "react"
+import {useRouter} from "next/router";
 
 
 async function loadUser(id){
@@ -13,6 +14,7 @@ async function loadUser(id){
 function userPost(){
     const [user,setUser]= useState([]);
     const params = useParams();
+    const router = useRouter();
 
     useEffect(()=>{
         async function post(){
@@ -28,8 +30,20 @@ function userPost(){
         setUser({...user,[e.target.name]:e.target.value})
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await fetch(``,{
+            method:'PUT',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(user),
+        });
+        router.push('/user')
+    }
+
     return(
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label>Email: </label>
                 <input type="text" name="email" value={user.email} onChange={handleChange} placeholder="Email" />

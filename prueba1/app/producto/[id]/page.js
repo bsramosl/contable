@@ -1,6 +1,7 @@
 "use client"
 import {useParams} from "next/navigation"
 import { useEffect, useState } from "react";
+import {useRouter} from "next/router"
 
 async function loadProduct(id){
     const res = await fetch(`https://fakestoreapi.com/products/${id}`)
@@ -12,6 +13,7 @@ async function loadProduct(id){
 export default function PostId(){
     const[product,setProduct]=useState([]);
     const params = useParams()  
+    const router = useRouter();
     useEffect(()=>{
         async function post(){
             if(params.id){

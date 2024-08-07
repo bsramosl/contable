@@ -62,6 +62,7 @@ export default function PostId(){
                 <label>Imagen: </label>
                 <input className="block w-full rounded border-2 border-black" type="text" name="image" value={product.image} onChange={handleChange} placeholder="Imagen"  />
             </div>
+            <button type="submit" className="block rounded">Guardar</button>
           </form>
        </div> 
     );

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 
 async function loadProduct(){
-    const res = await fetch('https://fakestoreapi.com/products')
+    const res = await fetch('https://fakestoreapi.com/products');
     const data = await res.json()
     return data;
 }

@@ -1,0 +1,6 @@
+instalar en django -->>>pip install djangorestframework
+
+crear model,rutas,y admin.site.register  en django
+
+
+crear serializer en app

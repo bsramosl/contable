@@ -2,11 +2,9 @@
 import Link from "next/link";
 import {useEffect,useState} from "react";
 
-async function loadProducto(){
-    debugger
+async function loadProducto(){ 
     const res = await fetch('http://localhost:8000/api/productos/');
     const data = await res.json();
-    console.log(data)
     return data;
 }
 

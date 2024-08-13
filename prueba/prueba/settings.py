@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+APPEND_SLASH = False
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 

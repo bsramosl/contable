@@ -1,40 +1,36 @@
 "use client"
-import Link from "next/link";
-import {useEffect,useState} from "react";
+import {useState,useEffect} from "react"
+import Link from "next/link"
 
-async function loadProducto(){ 
+async function loadProduct(){
     const res = await fetch('http://localhost:8001/api/productos/');
-    const data = await res.json();
-    return data;
-}
+    const data = res.json()
+    return data
 
- 
-async function eliminar(id) {
-    await fetch(`http://localhost:8001/api/productos/${id}/`,{
-        method:'DELETE',
-    });
 }
 
 
-export default function Product(){
-    const[product,setProduct]= useState([]);
+export default function producto1(){
+    const[product,setProduct] = useState([]);
 
     useEffect(()=>{
         async function fetchProduct(){
-            const pro = await loadProducto();
-            setProduct(pro)
+            const pro = await loadProduct()
+            setProduct(pro);
         }
         fetchProduct();
     },[])
- 
-    return (
+
+
+    return(
         <div>
             <table>
-                <Link href="producto/nuevo" className="btn block text-white rounded border-black border-2">Nuevo</Link>
                 <thead>
+                    <Link href="/">Nuevo</Link>
                     <tr>
                         <th>#</th>
-                        <th>Tittle</th>
+                        <th>Titulo</th>
+                        <th>Precio</th>
                         <th>Descripcion</th>
                         <th>Categoria</th>
                         <th>Opciones</th>
@@ -45,17 +41,19 @@ export default function Product(){
                         <tr>
                             <td>{producto.id}</td>
                             <td>{producto.title}</td>
+                            <td>{producto.price}</td>
                             <td>{producto.descripcion}</td>
                             <td>{producto.category}</td>
                             <td>
-                                <Link href={`producto/${producto.id}`} className="">Editar</Link>
-                                <button onClick={()=>eliminar(producto.id)} className="">Eliminar</button>
+                                <Link href={`producto1/${producto.id}`}>Editar</Link>
+                                <button>Eliminar</button>
                             </td>
                         </tr>
                     ))}
 
                 </tbody>
             </table>
+
         </div>
     );
 }

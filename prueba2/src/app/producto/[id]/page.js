@@ -5,12 +5,10 @@ import { useRouter } from "next/navigation";
 
 
 async function loadProducto(id){
-    const res = await fetch(`http://localhost:8000/api/productos/${id}`);
+    const res = await fetch(`http://localhost:8001/api/productos/${id}/`);
     const data = await res.json();
     return data
 }
-
-
 
 
 export default function edProducto(){
@@ -24,9 +22,9 @@ export default function edProducto(){
     const router = useRouter();
     const params = useParams();
  
-    useEffect(()=>{
+    useEffect(()=>{        
         async function post(){
-            if (params.id){
+            if (params.id && params.id != 'nuevo'){
                 const dat = await loadProducto(params.id);
                 setProduct(dat);
             }
@@ -39,17 +37,24 @@ export default function edProducto(){
     };
 
     const handleSubmit = async (e)=>{ 
+        debugger
         e.preventDefault();  
-         try {
-            await fetch(`http://localhost:8000/api/productos/${params.id}/`,{
-                method:'PUT',
+        
+        const method = params.id && params.id !== 'nuevo' ? 'PUT' : 'POST';
+       
+        const url = params.id && params.id !== 'nuevo'
+        ? `http://localhost:8001/api/productos/${params.id}/`
+        : 'http://localhost:8001/api/productos/';
+
+        try {
+            await fetch(url,{
+                method,
                 headers: {'Content-Type': 'application/json'},
                 body:JSON.stringify(product),
             });
             router.push('/producto')
-         } catch (error) {
+        } catch (error) {
         console.error(error);
-        // Handle error here
         }
     }
 
@@ -57,26 +62,26 @@ export default function edProducto(){
         <div>
             <form onSubmit={handleSubmit} >
                 <div>
-                    <label>Tittle</label>
+                    <label>Titulo</label>
                     <input type="text" name="title" value={product.title  ?? ''} onChange={handleChange} placeholder="Producto" ></input>
                 </div>
                 <div>
                     <label>Precio</label>
-                    <input  type="text" name="price" value={product.price  ?? ''} onChange={handleChange} placeholder="Precio"/>
+                    <input  type="number" name="price" value={product.price  ?? ''} onChange={handleChange} placeholder="Precio"/>
                 </div>
                 <div>
                     <label>Descripcion</label>
                     <input type="text" name="descripcion" value={product.descripcion  ?? ''} onChange={handleChange} placeholder="Descripcion"/>
                 </div>
                 <div>
-                    <label>category</label>
+                    <label>Categoria</label>
                     <input type="text" name="category" value={product.category ?? ''} onChange={handleChange} placeholder="Category"/>
                 </div>
                 <div>
                     <label>Imagen</label>
                     <input type="text" name="image" value={product.image ?? ''} onChange={handleChange} placeholder="Imagen"/>
                 </div>
-                <button type="submit" className="block rounded">Guardar</button>
+                <button type="submit" className="block rounded"> {params.id && params.id !== 'nuevo' ? 'Actualizar' : 'Crear'}</button>
             </form>
 
         </div>

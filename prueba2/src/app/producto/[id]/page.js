@@ -37,7 +37,6 @@ export default function edProducto(){
     };
 
     const handleSubmit = async (e)=>{ 
-        debugger
         e.preventDefault();  
         
         const method = params.id && params.id !== 'nuevo' ? 'PUT' : 'POST';

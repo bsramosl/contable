@@ -25,8 +25,8 @@ export default function producto1(){
     return(
         <div>
             <table>
-                <thead>
-                    <Link href="/">Nuevo</Link>
+                <thead> 
+                    <Link href="producto1/nuevo">Nuevo</Link>
                     <tr>
                         <th>#</th>
                         <th>Titulo</th>
